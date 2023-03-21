@@ -6,7 +6,9 @@ ILLEGAL = "ILLEGAL"
 EOF = "EOF"
 
 # Types
-STRING = "STRING"
+PARENT = "PARENT"
+CHILD  = "CHILD"
+PARAM  = "PARAM"
 
 # Operators
 ASSIGN = "="
@@ -14,6 +16,7 @@ ASSIGN = "="
 # Delimiters
 LSQBRA = "["
 RSQBRA = "]"
+SLASH = "/"
 DBLQUOTE = "\""
 NEWLINE = "\n"
 
@@ -46,10 +49,13 @@ class Token:
     type: token_type 
     literal: str
 
-KEYWORDS = {
+PARENT_KEYWORDS = {
     "document": DOCUMENT,
     "meta": META,
     "data": DATA,
+}
+
+CHILD_KEYWORDS = {
     "name": NAME,
     "format": FORMAT,
     "path": PATH,
@@ -61,6 +67,9 @@ KEYWORDS = {
     "image": IMAGE,
     "barcode": BARCODE,
     "batch_number": BATCH_NUMBER,
+}
+
+PARAMS_KEYWORDS = {
     "value": VALUE,
     "type": TYPE,
     "prompt": PROMPT,
@@ -68,7 +77,18 @@ KEYWORDS = {
     "font_size": FONT_SIZE,
 }
 
-def lookup_component_type(literal: str) -> token_type:
-    if KEYWORDS.get(literal.strip(), False):
-        return KEYWORDS[literal.strip()]
-    return ILLEGAL
+KEYWORDS = {
+    **PARENT_KEYWORDS,
+    **CHILD_KEYWORDS,
+    **PARAMS_KEYWORDS,
+}
+
+def lookup_literal_type(literal: str) -> token_type:
+    if literal.strip() in PARENT_KEYWORDS:
+        return PARENT
+    elif literal.strip() in CHILD_KEYWORDS:
+        return CHILD
+    elif literal.strip() in PARAMS_KEYWORDS:
+        return PARAM
+    else:
+        return ILLEGAL

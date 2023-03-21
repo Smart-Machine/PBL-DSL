@@ -8,7 +8,13 @@ class Lexer:
     next_index: int
     char: str
 
-    def __init__(self, source: str, current_index: int = 0, next_index: int = 0, char: str = "") -> None:
+    def __init__(
+        self,
+        source: str,
+        current_index: int = 0,
+        next_index: int = 0,
+        char: str = ""
+    ) -> None:
         self.source = source
         self.current_index = current_index
         self.next_index = next_index
@@ -28,21 +34,31 @@ class Lexer:
         self.next_index += 1
 
     def skip_whitespace(self) -> None:
-        while self.char == " " or self.char == "\t" or self.char == "\r":
+        while self.char == " " or self.char == "\t" or self.char == "\r" or self.char == "\n":
             self.read_char()
 
-    def read_component_name(self) -> str:
+    def is_letter(self, char: str) -> bool:
+        return 'a' <= char and char <= 'z' or 'A' <= char and char <= 'Z' or char == '_'
+
+    def read_literal(self) -> str:
         pos = self.current_index
         while self.is_letter(self.char):
             self.read_char()
         return self.source[pos:self.current_index]
 
-    def is_letter(self, char: str) -> bool:
-        return 'a' <= char and char <= 'z' or 'A' <= char and char <= 'Z' or char == '_'
+    def read_param(self) -> str:
+        if self.char != "=":
+            raise Exception("Expected an equal sign")
 
-    def read_string(self) -> str:
+        self.read_char()
+
+        if self.char != "\"":
+            raise Exception("Expected string as param value")
+
+        self.read_char()
+
         pos = self.current_index
-        while self.char != "\"":
+        while self.char != "\"" and self.char != tokens.EOF:
             self.read_char()
         return self.source[pos:self.current_index]
 
@@ -56,20 +72,17 @@ class Lexer:
                 tok = tokens.Token(tokens.LSQBRA, self.char)
             case "]":
                 tok = tokens.Token(tokens.RSQBRA, self.char)
-            case "=":
-                tok = tokens.Token(tokens.ASSIGN, self.char)
-            case "\"":
-                self.read_char()
-                literal = self.read_string()
-                type = tokens.STRING
-                self.read_char()
-                return tokens.Token(type, literal)
             case 0:
                 tok = tokens.Token(tokens.EOF, "")
             case _:
                 if self.is_letter(self.char):
-                    literal = self.read_component_name()
-                    type = tokens.lookup_component_type(literal)
+                    literal = self.read_literal()
+                    type = tokens.lookup_literal_type(literal)
+                    if type == tokens.PARAM:
+                        param = self.read_param()
+                        if param:
+                            self.read_char()
+                            return tokens.Token(type, f"{literal}='{param}'")
                     return tokens.Token(type, literal)
                 else:
                     tok = tokens.Token(tokens.ILLEGAL, self.char)
