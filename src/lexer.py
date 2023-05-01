@@ -1,4 +1,4 @@
-import tokens
+from src import tokens
 
 
 class Lexer:

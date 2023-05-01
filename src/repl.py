@@ -1,7 +1,7 @@
-import lexer
-import parsers
-import tokens 
 import json
+from src import lexer
+from src import parsers
+from src import tokens 
 
 PROMPT = ">> "
 

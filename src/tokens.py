@@ -35,12 +35,14 @@ TEXT = "TEXT"
 IMAGE = "IMAGE"
 BARCODE = "BARCODE"
 BATCH_NUMBER = "BATCH_NUMBER"
+TEMPLATE = "TEMPLATE"
 
 VALUE = "VALUE"
 TYPE  = "TYPE"
 PROMPT = "PROMPT"
 SRC = "SRC"
 FONT_SIZE = "FONT_SIZE"
+ROLE = "ROLE"
 
 
 @dataclass
@@ -67,6 +69,7 @@ CHILD_KEYWORDS = {
     "image": IMAGE,
     "barcode": BARCODE,
     "batch_number": BATCH_NUMBER,
+    "template": TEMPLATE,
 }
 
 PARAMS_KEYWORDS = {
@@ -75,6 +78,7 @@ PARAMS_KEYWORDS = {
     "prompt": PROMPT,
     "src": SRC,
     "font_size": FONT_SIZE,
+    "role": ROLE,
 }
 
 KEYWORDS = {
