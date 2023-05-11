@@ -1,0 +1,190 @@
+p1 {
+    font-size: 16px;
+    font-weight: normal;
+    color: #e8e7e5;
+}
+p2 {
+    font-size: 22px;
+}
+
+body {
+    background-color: #d7a684;
+}
+p3{
+    font-size: 16px;
+    font-weight: normal;
+    color: #592c28;
+}
+
+.company-name-first p {
+    width: 400px;
+    height: 50px;
+    background-color: #d7a684;
+    color: #ffffff;
+    position: absolute;
+    left: 40px;
+    top: 170px;
+    padding: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+    font-size: 30px;
+}
+
+.text-below-first-company-name p {
+    width: 400px;
+    height: 50px;
+    background-color: #d7a684;
+    color: #592c28;
+    position: absolute;
+    left: 40px;
+    top: 205px;
+    padding: 10px;
+    font-family: "Lucida Handwriting", "Brush Script MT", cursive;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.product-description {
+    width: 800px;
+    height: 625px;
+    background-color: #7f6863;
+    position: absolute;
+    left: 50px;
+    top: 330px;
+    padding: 10px;
+}
+
+.product-description p {
+    color: #262527;
+    font-size: 20px;
+    position: absolute;
+    left: 80px;
+    top: 100px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin: 0;
+}
+
+.text1-low p {
+    color: rgb(0, 0, 0);
+    font-size: 16px;
+    position: absolute;
+    left: 130px;
+    top: 460px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    margin: 0;
+}
+
+.inner-text2 p {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    position: absolute;
+    left: 80px;
+    top: 190px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+    margin: 0;
+}
+
+.expiration-date p {
+    color: rgb(0, 0, 0);
+    font-size: 20px;
+    position: absolute;
+    left: 300px;
+    top: 900px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-weight: bold;
+    margin: 0;
+}
+
+.company-name-second p {
+    width: 400px;
+    height: 50px;
+    color: #ffffff;
+    position: absolute;
+    left: 1000px;
+    top: 105px;
+    padding: 10px;
+    font-family: "Lucida Handwriting", "Brush Script MT", cursive;
+    font-size: 30px;
+    font-weight: bold;
+
+}
+
+.text-below-second-company-name p {
+    width: 400px;
+    height: 50px;
+    color: #592c28;
+    position: absolute;
+    left: 1000px;
+    top: 100px;
+    padding: 10px;
+    font-family: "Garamond", "Times New Roman", serif;
+    font-size: 100px;
+    font-weight: bold;
+}
+
+.text-middle p {
+    width: 400px;
+    height: 50px;
+    color: #000000;
+    position: absolute;
+    left: 1000px;
+    top: 450px;
+    padding: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 18px;
+}
+
+.text-barcode p {
+    width: 400px;
+    height: 50px;
+    color: #000000;
+    position: absolute;
+    left: 1050px;
+    top: 830px;
+    padding: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.text-address p {
+    width: 420px;
+    height: 50px;
+    color: #592c28;
+    position: absolute;
+    left: 1400px;
+    top: 730px;
+    padding: 10px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.chocolate-img {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    max-width: 1%;
+    transform: scale(0.04);
+    height: 1%;
+}
+
+.chocolate2-img {
+    position: absolute;
+    top: 90px;
+    left: 1440px;
+    max-width: 20%;
+    transform: scale(1);
+    height: auto;
+}
+
+.barcode-img {
+    position: absolute;
+    top: 380px;
+    left: 735px;
+    max-width: 100%;
+    transform: scale(0.2);
+    height: auto;
+}

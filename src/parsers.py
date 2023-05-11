@@ -24,7 +24,8 @@ class Parser:
 
         self.parser_funcs = {
             1: parsers_utils.process_basic,
-            # 2: ...
+            2: parsers_utils.process_soft, 
+            3: parsers_utils.process_water,
         }
 
     def read_token(self) -> tokens.Token:
@@ -83,8 +84,17 @@ class Parser:
                         else:
                             bundle_html("templates/basic")
                     elif component.get("params").get("value") == "2":
-                        # TODO: add more templates
-                        bundle_html("template/...")
+                        template_model = 2
+                        if output_file_name:
+                            bundle_html("templates/soft", output_file_name)
+                        else:
+                            bundle_html("templates/soft")
+                    elif component.get("params").get("value") == "3":
+                        template_model = 3
+                        if output_file_name:
+                            bundle_html("templates/water", output_file_name)
+                        else:
+                            bundle_html("templates/water")
                 if component.get("node") == "name":
                     output_file_name = component.get("params").get("value")
                 if component.get("node") == "format":

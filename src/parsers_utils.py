@@ -76,7 +76,7 @@ def process_basic(component: dict, file_name: str = "output") -> None:
         # locally. 
         link = component.get("params").get("src")
         data_url = None
-        if link:
+        if link and "http" in link:
             response = requests.get(link)
             image_bytes = response.content
             image = base64.b64encode(image_bytes).decode("utf-8")
@@ -96,10 +96,21 @@ def process_basic(component: dict, file_name: str = "output") -> None:
             elif image[0] == 'P':
                 image_ext = "svg"
             data_url = f"data:image/{image_ext};base64,{image}"
-        if component.get("params").get("role") == "barcode-img":
-            previous_image = html_tree.xpath("//div[contains(@class, 'barcode-img')]/img/@src")[0]
-            if data_url:
-                html_file = html_file.replace(previous_image, data_url)
+        elif link:
+            binary_file_content = open(link, "rb").read()
+            base64_utf8_str = base64.b64encode(binary_file_content).decode("utf-8")
+            ext = link.split(".")[-1]
+            data_url = f"data:image/{ext};base64,{base64_utf8_str}"
+
+        previous_image = html_tree.xpath(f"//div[contains(@class, '{component.get('params').get('role')}')]/img/@src")[0]
+        if data_url:
+            html_file = html_file.replace(previous_image, data_url)
 
     with open(f"output/{file_name}.html", "w") as file:
         file.write(html_file)
+
+def process_soft(component: dict, file_name: str = "output") -> None:
+    process_basic(component, file_name)
+
+def process_water(component: dict, file_name: str = "output") -> None:
+    pass
